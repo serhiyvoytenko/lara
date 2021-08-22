@@ -12,7 +12,6 @@ services:
     container_name: skillup_nginx_new
     ports:
       - 8888:80
-      - 3000:3000
     volumes:
       - ./:/var/www
       - ./docker/nginx/lara.skillup.local.conf:/etc/nginx/conf.d/lara.skillup.local.conf
