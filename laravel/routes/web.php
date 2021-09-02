@@ -15,14 +15,15 @@ use UniSharp\LaravelFilemanager\Lfm;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/laravel-filemanager');
 });
 
-Route::get('/guest', function () {
-    return view('guest');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-//Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
+require __DIR__.'/auth.php';
+
+Route::group(['prefix' => '/laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     Lfm::routes();
 });

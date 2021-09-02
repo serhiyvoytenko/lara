@@ -1,7 +1,10 @@
 FROM php:8.0.1-fpm
 
+# Add repo NODEJS
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+
 # Install modules
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
         libjpeg62-turbo-dev \
         libmagickwand-dev \
         libfreetype6-dev \
@@ -24,6 +27,7 @@ RUN apt-get update && apt-get install -y \
         zip \
         git \
         htop \
+        nodejs \
         net-tools\
             --no-install-recommends
 
