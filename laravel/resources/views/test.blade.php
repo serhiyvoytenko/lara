@@ -11,6 +11,7 @@
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<?php var_dump($fileList, $dirList)?>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="view-account">
@@ -18,7 +19,8 @@
             <div class="module-inner">
                 <div class="side-bar">
                     <div class="user-info">
-                        <img class="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                        <img class="img-profile img-circle img-responsive center-block"
+                             src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                         <ul class="meta list list-unstyled">
                             <li class="name">Rebecca Sanders
                                 <label class="label label-info">UX Designer</label>
@@ -51,13 +53,18 @@
                         <div class="page-nav">
                             <span class="indicator">View:</span>
                             <div class="btn-group" role="group">
-                                <button class="active btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Grid View" id="drive-grid-toggle"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="List View" id="drive-list-toggle"><i class="fa fa-list-ul"></i></button>
+                                <button class="active btn btn-default" data-toggle="tooltip" data-placement="bottom"
+                                        title="" data-original-title="Grid View" id="drive-grid-toggle"><i
+                                        class="fa fa-th-large"></i></button>
+                                <button class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title=""
+                                        data-original-title="List View" id="drive-list-toggle"><i
+                                        class="fa fa-list-ul"></i></button>
                             </div>
                         </div>
                         <div class="actions">
                             <div class="btn-group">
-                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">All Items <span class="caret"></span></button>
+                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"
+                                        aria-expanded="false">All Items <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><i class="fa fa-file"></i> Documents</a></li>
                                     <li><a href="#"><i class="fa fa-file-image-o"></i> Images</a></li>
@@ -66,18 +73,28 @@
                                 </ul>
                             </div>
                             <div class="btn-group">
-                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false"><i class="fa fa-filter"></i> Sorting <span class="caret"></span></button>
+                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"
+                                        aria-expanded="false"><i class="fa fa-filter"></i> Sorting <span
+                                        class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Newest first</a></li>
                                     <li><a href="#">Oldest first</a></li>
                                 </ul>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></button>
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Archive"><i class="fa fa-archive"></i></button>
+                                <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                        data-placement="bottom" title="" data-original-title="Refresh"><i
+                                        class="fa fa-refresh"></i></button>
+                                <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                        data-placement="bottom" title="" data-original-title="Archive"><i
+                                        class="fa fa-archive"></i></button>
 
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Report spam"><i class="fa fa-exclamation-triangle"></i></button>
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></button>
+                                <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                        data-placement="bottom" title="" data-original-title="Report spam"><i
+                                        class="fa fa-exclamation-triangle"></i></button>
+                                <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                        data-placement="bottom" title="" data-original-title="Delete"><i
+                                        class="fa fa-trash-o"></i></button>
                             </div>
                         </div>
                     </div>
@@ -92,8 +109,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -101,13 +120,17 @@
                                 <div class="drive-item-inner module-inner">
                                     <div class="drive-item-title"><a href="#">Stock Image DC3214.JPG</a></div>
                                     <div class="drive-item-thumb">
-                                        <a href="#"><img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
+                                        <a href="#"><img class="img-responsive"
+                                                         src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                                                         alt=""></a>
                                     </div>
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -120,8 +143,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -134,8 +159,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -148,8 +175,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -157,13 +186,17 @@
                                 <div class="drive-item-inner module-inner">
                                     <div class="drive-item-title"><a href="#">Image DS1341.JPG</a></div>
                                     <div class="drive-item-thumb">
-                                        <a href="#"><img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></a>
+                                        <a href="#"><img class="img-responsive"
+                                                         src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                         alt=""></a>
                                     </div>
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -171,13 +204,17 @@
                                 <div class="drive-item-inner module-inner">
                                     <div class="drive-item-title"><a href="#">Image DS3214.JPG</a></div>
                                     <div class="drive-item-thumb">
-                                        <a href="#"><img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></a>
+                                        <a href="#"><img class="img-responsive"
+                                                         src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                                         alt=""></a>
                                     </div>
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -190,8 +227,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -204,8 +243,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -218,8 +259,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -233,8 +276,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -247,8 +292,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -261,8 +308,10 @@
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -270,13 +319,17 @@
                                 <div class="drive-item-inner module-inner">
                                     <div class="drive-item-title"><a href="#">Image DS2314.JPG</a></div>
                                     <div class="drive-item-thumb">
-                                        <a href="#"><img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""></a>
+                                        <a href="#"><img class="img-responsive"
+                                                         src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                                                         alt=""></a>
                                     </div>
                                 </div>
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Download"><i class="fa fa-download"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                               data-original-title="Delete"><i class="fa fa-trash"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -384,13 +437,15 @@
 </div>
 
 <style type="text/css">
-    body{
-        background:#f9f9fb;
+    body {
+        background: #f9f9fb;
     }
-    .view-account{
-        background:#FFFFFF;
-        margin-top:20px;
+
+    .view-account {
+        background: #FFFFFF;
+        margin-top: 20px;
     }
+
     .view-account .pro-label {
         font-size: 13px;
         padding: 4px 5px;
@@ -446,7 +501,7 @@
         margin: 0 auto
     }
 
-    .view-account .side-bar .side-menu .nav>li {
+    .view-account .side-bar .side-menu .nav > li {
         font-size: 14px;
         margin-bottom: 0;
         border-bottom: none;
@@ -456,45 +511,45 @@
         margin-bottom: 15px
     }
 
-    .view-account .side-bar .side-menu .nav>li:last-child {
+    .view-account .side-bar .side-menu .nav > li:last-child {
         margin-right: 0
     }
 
-    .view-account .side-bar .side-menu .nav>li>a {
+    .view-account .side-bar .side-menu .nav > li > a {
         display: inline-block;
         color: #9499a3;
         padding: 5px;
         border-bottom: 2px solid transparent
     }
 
-    .view-account .side-bar .side-menu .nav>li>a:hover {
+    .view-account .side-bar .side-menu .nav > li > a:hover {
         color: #616670;
         background: none
     }
 
-    .view-account .side-bar .side-menu .nav>li.active a {
+    .view-account .side-bar .side-menu .nav > li.active a {
         color: #40babd;
         border-bottom: 2px solid #40babd;
         background: none;
         border-right: none
     }
 
-    .theme-2 .view-account .side-bar .side-menu .nav>li.active a {
+    .theme-2 .view-account .side-bar .side-menu .nav > li.active a {
         color: #6dbd63;
         border-bottom-color: #6dbd63
     }
 
-    .theme-3 .view-account .side-bar .side-menu .nav>li.active a {
+    .theme-3 .view-account .side-bar .side-menu .nav > li.active a {
         color: #497cb1;
         border-bottom-color: #497cb1
     }
 
-    .theme-4 .view-account .side-bar .side-menu .nav>li.active a {
+    .theme-4 .view-account .side-bar .side-menu .nav > li.active a {
         color: #ec6952;
         border-bottom-color: #ec6952
     }
 
-    .view-account .side-bar .side-menu .nav>li .icon {
+    .view-account .side-bar .side-menu .nav > li .icon {
         display: block;
         font-size: 24px;
         margin-bottom: 5px
@@ -573,7 +628,7 @@
         overflow: hidden
     }
 
-    .view-account .content-panel .mails-wrapper .mail-item>div {
+    .view-account .content-panel .mails-wrapper .mail-item > div {
         float: left
     }
 
@@ -823,71 +878,86 @@
         color: #a2a6af
     }
 
-    @media (max-width:767px) {
+    @media (max-width: 767px) {
         .view-account .content-panel .title {
             text-align: center
         }
+
         .view-account .side-bar .user-info {
             padding: 0
         }
+
         .view-account .side-bar .user-info .img-profile {
             width: 60px;
             height: 60px
         }
+
         .view-account .side-bar .user-info .meta li {
             margin-bottom: 5px
         }
+
         .view-account .content-panel .content-header-wrapper .actions {
             position: static;
             margin-bottom: 30px
         }
+
         .view-account .content-panel {
             padding: 0
         }
+
         .view-account .content-panel .content-utilities .page-nav {
             position: static;
             margin-bottom: 15px
         }
+
         .drive-wrapper .drive-item {
             width: 100px;
             margin-right: 5px;
             float: none
         }
+
         .drive-wrapper .drive-item-thumb {
             width: auto;
             height: 54px
         }
+
         .drive-wrapper .drive-item-thumb .fa {
             font-size: 24px;
             padding-top: 0
         }
+
         .view-account .content-panel .avatar .figure img {
             float: none;
             margin-bottom: 15px
         }
+
         .view-account .file-uploader {
             margin-bottom: 15px
         }
+
         .view-account .mail-subject {
             max-width: 100px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis
         }
+
         .view-account .content-panel .mails-wrapper .mail-item .time-container {
             position: static
         }
+
         .view-account .content-panel .mails-wrapper .mail-item .time-container .time {
             width: auto;
             text-align: left
         }
     }
 
-    @media (min-width:768px) {
+    @media (min-width: 768px) {
         .view-account .side-bar .user-info {
             padding: 0;
             padding-bottom: 15px
         }
+
         .view-account .mail-subject .subject {
             max-width: 200px;
             white-space: nowrap;
@@ -896,39 +966,46 @@
         }
     }
 
-    @media (min-width:992px) {
+    @media (min-width: 992px) {
         .view-account .content-panel {
             min-height: 800px;
             border-left: 1px solid #f3f3f7;
             margin-left: 200px
         }
+
         .view-account .mail-subject .subject {
             max-width: 280px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis
         }
+
         .view-account .side-bar {
             position: absolute;
             width: 200px;
             min-height: 600px
         }
+
         .view-account .side-bar .user-info {
             margin-bottom: 0;
             border-bottom: none;
             padding: 30px
         }
+
         .view-account .side-bar .user-info .img-profile {
             width: 120px;
             height: 120px
         }
+
         .view-account .side-bar .side-menu {
             text-align: left
         }
+
         .view-account .side-bar .side-menu .nav {
             display: block
         }
-        .view-account .side-bar .side-menu .nav>li {
+
+        .view-account .side-bar .side-menu .nav > li {
             display: block;
             float: none;
             font-size: 14px;
@@ -936,30 +1013,37 @@
             margin-right: 0;
             margin-bottom: 0
         }
-        .view-account .side-bar .side-menu .nav>li>a {
+
+        .view-account .side-bar .side-menu .nav > li > a {
             display: block;
             color: #9499a3;
             padding: 10px 15px;
             padding-left: 30px
         }
-        .view-account .side-bar .side-menu .nav>li>a:hover {
+
+        .view-account .side-bar .side-menu .nav > li > a:hover {
             background: #f9f9fb
         }
-        .view-account .side-bar .side-menu .nav>li.active a {
+
+        .view-account .side-bar .side-menu .nav > li.active a {
             background: #f9f9fb;
             border-right: 4px solid #40babd;
             border-bottom: none
         }
-        .theme-2 .view-account .side-bar .side-menu .nav>li.active a {
+
+        .theme-2 .view-account .side-bar .side-menu .nav > li.active a {
             border-right-color: #6dbd63
         }
-        .theme-3 .view-account .side-bar .side-menu .nav>li.active a {
+
+        .theme-3 .view-account .side-bar .side-menu .nav > li.active a {
             border-right-color: #497cb1
         }
-        .theme-4 .view-account .side-bar .side-menu .nav>li.active a {
+
+        .theme-4 .view-account .side-bar .side-menu .nav > li.active a {
             border-right-color: #ec6952
         }
-        .view-account .side-bar .side-menu .nav>li .icon {
+
+        .view-account .side-bar .side-menu .nav > li .icon {
             font-size: 24px;
             vertical-align: middle;
             text-align: center;
@@ -967,6 +1051,7 @@
             display: inline-block
         }
     }
+
     .module {
         border: 1px solid #f3f3f3;
         border-bottom-width: 2px;
@@ -976,18 +1061,20 @@
         border-radius: 4px;
         background-clip: padding-box;
     }
+
     .module .module-footer {
         background: #fff;
         border-top: 1px solid #f3f3f7;
         padding: 15px;
     }
+
     .module .module-footer a {
         color: #9499a3;
     }
 </style>
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         $("[data-toggle='tooltip']").tooltip();
     })
 </script>
