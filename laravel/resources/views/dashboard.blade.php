@@ -1,12 +1,13 @@
 <x-app-layout>
-    <?php var_dump($fileList, $dirList, $sizeFile, $uploaded)?>
+    <!--    --><?php //var_dump($view)?>
     <div class="container">
         <div class="view-account">
             <section class="module">
                 <div class="module-inner">
                     <div class="side-bar">
                         <div class="user-info">
-                            <img class="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                            <img class="img-profile img-circle img-responsive center-block"
+                                 src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                             <ul class="meta list list-unstyled">
                                 <li class="name">{{ Auth::user()->name }}
                                     <label class="label label-info">UX Designer</label>
@@ -32,13 +33,15 @@
                         <div class="content-header-wrapper">
                             <h2 class="title">My Drive</h2>
                             <div class="actions">
-                                <button class="btn btn-success"><i class="fa fa-plus"></i> Upload New Item</button>
+                                <button class="btn btn-success"><i class="fa fa-plus"></i> Upload/Create New Item
+                                </button>
                             </div>
                         </div>
                         <div class="content-utilities">
                             <div class="actions">
                                 <div class="btn-group">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">All Items <span class="caret"></span></button>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"
+                                            aria-expanded="false">All Items <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#"><i class="fa fa-file"></i> Documents</a></li>
                                         <li><a href="#"><i class="fa fa-file-image-o"></i> Images</a></li>
@@ -47,18 +50,28 @@
                                     </ul>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false"><i class="fa fa-filter"></i> Sorting <span class="caret"></span></button>
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"
+                                            aria-expanded="false"><i class="fa fa-filter"></i> Sorting <span
+                                            class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Newest first</a></li>
                                         <li><a href="#">Oldest first</a></li>
                                     </ul>
                                 </div>
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></button>
-                                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Archive"><i class="fa fa-archive"></i></button>
+                                    <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                            data-placement="bottom" title="" data-original-title="Refresh"><i
+                                            class="fa fa-refresh"></i></button>
+                                    <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                            data-placement="bottom" title="" data-original-title="Archive"><i
+                                            class="fa fa-archive"></i></button>
 
-                                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Report spam"><i class="fa fa-exclamation-triangle"></i></button>
-                                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></button>
+                                    <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                            data-placement="bottom" title="" data-original-title="Report spam"><i
+                                            class="fa fa-exclamation-triangle"></i></button>
+                                    <button type="button" class="btn btn-default" data-toggle="tooltip"
+                                            data-placement="bottom" title="" data-original-title="Delete"><i
+                                            class="fa fa-trash-o"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -69,98 +82,44 @@
                                     <tr>
                                         <th class="type"></th>
                                         <th class="name truncate">Name</th>
-                                        <th class="date">Uploaded</th>
-                                        <th class="size">Size</th>
+                                        <th class="size">Edit</th>
+                                        <th class="name">Modified</th>
+                                        <th class="name">Size</th>
                                         <th class="size">Download</th>
                                         <th class="size">Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-text-o text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">Meeting Notes.txt</a></td>
-                                        <td class="date">Sep 23, 2015</td>
-                                        <td class="size">18 KB</td>
-                                        <td class="size"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></td>
-                                        <td class="size"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-image-o text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">Stock Image DC3214.JPG</a></td>
-                                        <td class="date">Sep 21, 2015</td>
-                                        <td class="size">235 MB</td>
-                                        <td class="size"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></td>
-                                        <td class="size"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-powerpoint-o text-warning"></i></td>
-                                        <td class="name truncate"><a href="#">Deck Lorem Ipsum.ppt</a></td>
-                                        <td class="date">Sep 20, 2015</td>
-                                        <td class="size">136 MB</td>
-                                        <td class="size"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download"><i class="fa fa-download"></i></a></td>
-                                        <td class="size"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-excel-o text-success"></i></td>
-                                        <td class="name truncate"><a href="#">Project Tasks.csv</a></td>
-                                        <td class="date">Aug 16, 2015</td>
-                                        <td class="size">32 KB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-pdf-o text-warning"></i></td>
-                                        <td class="name truncate"><a href="#">Project Brief.pdf</a></td>
-                                        <td class="date">Aug 15, 2015</td>
-                                        <td class="size">73 MB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-image-o text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">Image DS1341.JPG</a></td>
-                                        <td class="date">Aug 15, 2015</td>
-                                        <td class="size">171 MB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-image-o text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">Image DS3214.JPG</a></td>
-                                        <td class="date">Aug 15, 2015</td>
-                                        <td class="size">171 MB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-folder text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">UX Resource</a></td>
-                                        <td class="date">Feb 07, 2015</td>
-                                        <td class="size">--</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-folder text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">Prototypes</a></td>
-                                        <td class="date">Jan 03, 2015</td>
-                                        <td class="size">--</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-word-o text-info"></i></td>
-                                        <td class="name truncate"><a href="#">Quisque.doc</a></td>
-                                        <td class="date">Oct 21, 2014</td>
-                                        <td class="size">27 KB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-word-o text-info"></i></td>
-                                        <td class="name truncate"><a href="#">Aenean imperdiet.doc</a></td>
-                                        <td class="date">Oct 16, 2014</td>
-                                        <td class="size">23 KB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-code-o text-primary"></i></td>
-                                        <td class="name truncate"><a href="#">demo.html</a></td>
-                                        <td class="date">Aug 23, 2014</td>
-                                        <td class="size">10 KB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="type"><i class="fa fa-file-image-o text-success"></i></td>
-                                        <td class="name truncate"><a href="#">Image DS2314.JPG</a></td>
-                                        <td class="date">Aug 06, 2014</td>
-                                        <td class="size">325 MB</td>
-                                    </tr>
+                                    @foreach($view as $file)
+                                        <tr>
+                                            <td class="type"><i
+                                                    class="fa {{isset($file['isDir'])?'fa-folder':''}} text-primary"></i>
+                                            </td>
+                                            <td class="name truncate">
+                                                @if(isset($file['isDir']))
+                                                    <a href="?dir=/{{$file['fullName']}}/">{{$file['shortName']}}</a>
+                                                @else
+                                                    {{$file['shortName']}}
+                                                @endif
+                                                <div class="form module-footer form-control-plaintext">
+                                                    <p><b>Title: {{$file['title']??'--'}}</b></p>
+                                                    <p>Description: {{$file['description']??'--'}}</p>
+                                                    <p>Comment: {{$file['comment']??'--'}}</p>
+                                                    <p>Category: {{$file['category']??'--'}}</p>
+                                                    <p>Tags: {{$file['tags']??'--'}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="size"><a href="#">Edit</a></td>
+                                            <td class="date">{{$file['modified']}}</td>
+                                            <td class="size">{{$file['size']??'--'}}</td>
+                                            <td class="size"><a href="#" data-toggle="tooltip" data-placement="top"
+                                                                title="" data-original-title="Download"><i
+                                                        class="fa fa-download"></i></a></td>
+                                            <td class="size"><a href="#" data-toggle="tooltip" data-placement="top"
+                                                                title="" data-original-title="Delete"><i
+                                                        class="fa fa-trash"></i></a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -171,13 +130,15 @@
         </div>
     </div>
     <style type="text/css">
-        body{
-            background:#f9f9fb;
+        body {
+            background: #f9f9fb;
         }
-        .view-account{
-            background:#FFFFFF;
-            margin-top:20px;
+
+        .view-account {
+            background: #FFFFFF;
+            margin-top: 20px;
         }
+
         .view-account .pro-label {
             font-size: 13px;
             padding: 4px 5px;
@@ -233,7 +194,7 @@
             margin: 0 auto
         }
 
-        .view-account .side-bar .side-menu .nav>li {
+        .view-account .side-bar .side-menu .nav > li {
             font-size: 14px;
             margin-bottom: 0;
             border-bottom: none;
@@ -243,45 +204,45 @@
             margin-bottom: 15px
         }
 
-        .view-account .side-bar .side-menu .nav>li:last-child {
+        .view-account .side-bar .side-menu .nav > li:last-child {
             margin-right: 0
         }
 
-        .view-account .side-bar .side-menu .nav>li>a {
+        .view-account .side-bar .side-menu .nav > li > a {
             display: inline-block;
             color: #9499a3;
             padding: 5px;
             border-bottom: 2px solid transparent
         }
 
-        .view-account .side-bar .side-menu .nav>li>a:hover {
+        .view-account .side-bar .side-menu .nav > li > a:hover {
             color: #616670;
             background: none
         }
 
-        .view-account .side-bar .side-menu .nav>li.active a {
+        .view-account .side-bar .side-menu .nav > li.active a {
             color: #40babd;
             border-bottom: 2px solid #40babd;
             background: none;
             border-right: none
         }
 
-        .theme-2 .view-account .side-bar .side-menu .nav>li.active a {
+        .theme-2 .view-account .side-bar .side-menu .nav > li.active a {
             color: #6dbd63;
             border-bottom-color: #6dbd63
         }
 
-        .theme-3 .view-account .side-bar .side-menu .nav>li.active a {
+        .theme-3 .view-account .side-bar .side-menu .nav > li.active a {
             color: #497cb1;
             border-bottom-color: #497cb1
         }
 
-        .theme-4 .view-account .side-bar .side-menu .nav>li.active a {
+        .theme-4 .view-account .side-bar .side-menu .nav > li.active a {
             color: #ec6952;
             border-bottom-color: #ec6952
         }
 
-        .view-account .side-bar .side-menu .nav>li .icon {
+        .view-account .side-bar .side-menu .nav > li .icon {
             display: block;
             font-size: 24px;
             margin-bottom: 5px
@@ -360,7 +321,7 @@
             overflow: hidden
         }
 
-        .view-account .content-panel .mails-wrapper .mail-item>div {
+        .view-account .content-panel .mails-wrapper .mail-item > div {
             float: left
         }
 
@@ -610,71 +571,86 @@
             color: #a2a6af
         }
 
-        @media (max-width:767px) {
+        @media (max-width: 767px) {
             .view-account .content-panel .title {
                 text-align: center
             }
+
             .view-account .side-bar .user-info {
                 padding: 0
             }
+
             .view-account .side-bar .user-info .img-profile {
                 width: 60px;
                 height: 60px
             }
+
             .view-account .side-bar .user-info .meta li {
                 margin-bottom: 5px
             }
+
             .view-account .content-panel .content-header-wrapper .actions {
                 position: static;
                 margin-bottom: 30px
             }
+
             .view-account .content-panel {
                 padding: 0
             }
+
             .view-account .content-panel .content-utilities .page-nav {
                 position: static;
                 margin-bottom: 15px
             }
+
             .drive-wrapper .drive-item {
                 width: 100px;
                 margin-right: 5px;
                 float: none
             }
+
             .drive-wrapper .drive-item-thumb {
                 width: auto;
                 height: 54px
             }
+
             .drive-wrapper .drive-item-thumb .fa {
                 font-size: 24px;
                 padding-top: 0
             }
+
             .view-account .content-panel .avatar .figure img {
                 float: none;
                 margin-bottom: 15px
             }
+
             .view-account .file-uploader {
                 margin-bottom: 15px
             }
+
             .view-account .mail-subject {
                 max-width: 100px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis
             }
+
             .view-account .content-panel .mails-wrapper .mail-item .time-container {
                 position: static
             }
+
             .view-account .content-panel .mails-wrapper .mail-item .time-container .time {
                 width: auto;
                 text-align: left
             }
         }
 
-        @media (min-width:768px) {
+        @media (min-width: 768px) {
             .view-account .side-bar .user-info {
                 padding: 0;
                 padding-bottom: 15px
             }
+
             .view-account .mail-subject .subject {
                 max-width: 200px;
                 white-space: nowrap;
@@ -683,39 +659,46 @@
             }
         }
 
-        @media (min-width:992px) {
+        @media (min-width: 992px) {
             .view-account .content-panel {
                 min-height: 800px;
                 border-left: 1px solid #f3f3f7;
                 margin-left: 200px
             }
+
             .view-account .mail-subject .subject {
                 max-width: 280px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis
             }
+
             .view-account .side-bar {
                 position: absolute;
                 width: 200px;
                 min-height: 600px
             }
+
             .view-account .side-bar .user-info {
                 margin-bottom: 0;
                 border-bottom: none;
                 padding: 30px
             }
+
             .view-account .side-bar .user-info .img-profile {
                 width: 120px;
                 height: 120px
             }
+
             .view-account .side-bar .side-menu {
                 text-align: left
             }
+
             .view-account .side-bar .side-menu .nav {
                 display: block
             }
-            .view-account .side-bar .side-menu .nav>li {
+
+            .view-account .side-bar .side-menu .nav > li {
                 display: block;
                 float: none;
                 font-size: 14px;
@@ -723,30 +706,37 @@
                 margin-right: 0;
                 margin-bottom: 0
             }
-            .view-account .side-bar .side-menu .nav>li>a {
+
+            .view-account .side-bar .side-menu .nav > li > a {
                 display: block;
                 color: #9499a3;
                 padding: 10px 15px;
                 padding-left: 30px
             }
-            .view-account .side-bar .side-menu .nav>li>a:hover {
+
+            .view-account .side-bar .side-menu .nav > li > a:hover {
                 background: #f9f9fb
             }
-            .view-account .side-bar .side-menu .nav>li.active a {
+
+            .view-account .side-bar .side-menu .nav > li.active a {
                 background: #f9f9fb;
                 border-right: 4px solid #40babd;
                 border-bottom: none
             }
-            .theme-2 .view-account .side-bar .side-menu .nav>li.active a {
+
+            .theme-2 .view-account .side-bar .side-menu .nav > li.active a {
                 border-right-color: #6dbd63
             }
-            .theme-3 .view-account .side-bar .side-menu .nav>li.active a {
+
+            .theme-3 .view-account .side-bar .side-menu .nav > li.active a {
                 border-right-color: #497cb1
             }
-            .theme-4 .view-account .side-bar .side-menu .nav>li.active a {
+
+            .theme-4 .view-account .side-bar .side-menu .nav > li.active a {
                 border-right-color: #ec6952
             }
-            .view-account .side-bar .side-menu .nav>li .icon {
+
+            .view-account .side-bar .side-menu .nav > li .icon {
                 font-size: 24px;
                 vertical-align: middle;
                 text-align: center;
@@ -754,6 +744,7 @@
                 display: inline-block
             }
         }
+
         .module {
             border: 1px solid #f3f3f3;
             border-bottom-width: 2px;
@@ -763,18 +754,20 @@
             border-radius: 4px;
             background-clip: padding-box;
         }
+
         .module .module-footer {
             background: #fff;
             border-top: 1px solid #f3f3f7;
             padding: 15px;
         }
+
         .module .module-footer a {
             color: #9499a3;
         }
     </style>
 
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             $("[data-toggle='tooltip']").tooltip();
         })
     </script>
