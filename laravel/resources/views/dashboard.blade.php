@@ -1,5 +1,5 @@
 <x-app-layout>
-    <!--    --><?php //var_dump($view)?>
+    <?php var_dump($view)?>
     <div class="container">
         <div class="view-account">
             <section class="module">
@@ -110,7 +110,7 @@
                                                 </div>
                                             </td>
                                             <td class="size"><a href="#">Edit</a></td>
-                                            <td class="date">{{$file['modified']}}</td>
+                                            <td class="date">{{$file['modified']??'--'}}</td>
                                             <td class="size">{{$file['size']??'--'}}</td>
                                             <td class="size"><a href="#" data-toggle="tooltip" data-placement="top"
                                                                 title="" data-original-title="Download"><i

@@ -29,15 +29,15 @@ class FileSystemController extends Controller
                 $modified = null;
             } else {
                 $url = implode('/', $url);
-                $modified = Storage::lastModified($url);
-                $modified = date('Y-m-d H:i:s', $modified);
+//                $modified = Storage::lastModified($url);
+//                $modified = date('Y-m-d H:i:s', $modified);
             }
 
             $filesName['..'] = [
                 'isDir' => true,
                 'fullName' => trim($url, '/'),
                 'shortName' => '..',
-                'modified' => $modified,
+//                'modified' => $modified,
             ];
 
         }
@@ -45,12 +45,15 @@ class FileSystemController extends Controller
         $arrayDirName = Storage::directories($_GET['dir'] ?? '/');
         foreach ($arrayDirName as $dirName) {
             $view = explode('/', $dirName);
+            $path = Storage::path($dirName);
             $shortName = array_pop($view);
+
             $filesName [$shortName] = [
                 'isDir' => true,
                 'fullName' => $dirName,
                 'shortName' => $shortName,
                 'modified' => date('Y-m-d H:i:s', Storage::lastModified($dirName)),
+//                'title' => ,
             ];
         }
 
@@ -70,5 +73,4 @@ class FileSystemController extends Controller
             'view' => $filesName,
         ]);
     }
-    //
 }
