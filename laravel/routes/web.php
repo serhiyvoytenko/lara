@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\FileSystemController;
 use Illuminate\Support\Facades\Route;
-use UniSharp\LaravelFilemanager\Lfm;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +18,16 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', [\App\Http\Controllers\FileSystemController::class, 'listDirectory'])->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function (){
+
+    Route::get('/dashboard', [FileSystemController::class, 'listDirectory'])->name('dashboard');
+
+    Route::get('/editfield', [FileSystemController::class, 'editField'])->name('editfield');
+    Route::post('/save', [FileSystemController::class, 'save'])->name('save');
+
+});
+
 
 //Route::middleware(['auth'])->get('/test', [\App\Http\Controllers\FileSystemController::class, 'listDirectory']);
 
 require __DIR__ . '/auth.php';
-
-Route::group(['prefix' => '/laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
-    Lfm::routes();
-});

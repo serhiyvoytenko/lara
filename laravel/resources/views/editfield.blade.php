@@ -1,4 +1,5 @@
 <x-app-layout>
+<!--    --><?php //var_dump($view)?>
     <div class="container">
         <div class="view-account">
             <section class="module">
@@ -32,7 +33,7 @@
                         <div class="content-header-wrapper">
                             <h2 class="title">My Drive</h2>
                             <div class="actions">
-                                <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Upload/Create New Item
+                                <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Upload attached file
                                 </button>
                             </div>
                         </div>
@@ -79,71 +80,111 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="type"></th>
                                         <th class="name truncate">Name</th>
-                                        <th class="size">Edit Data</th>
-                                        <th class="name">Modified</th>
-                                        <th class="name">Size</th>
-                                        <th class="size">Download</th>
-                                        <th class="size">Delete</th>
+                                        <th class="size">Type</th>
+                                        <th class="size">Path</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($view ?? '' as $file)
-                                        <tr>
-                                            <td class="type"><i
-                                                    class="fa {{isset($file['isDir'])?'fa-folder':''}} text-primary"></i>
-                                            </td>
-                                            <td class="name truncate">
-                                                @if(isset($file['isDir']))
-                                                    <a href="?dir=/{{$file['fullName']}}/">{{$file['shortName']}}</a>
-                                                @else
-                                                    {{$file['shortName']}}
-                                                @endif
-                                                @if($file['shortName'] !== '[Parent] ..')
-                                                    <div class="form module-footer form-control-plaintext">
-                                                        <p><b>Title: {{$file['title']??'--'}}</b></p>
-                                                        <p>Description: {{$file['description']??'--'}}</p>
-                                                        <p>Comment: {{$file['comment']??'--'}}</p>
-                                                        <p>Category: {{$file['category']??'--'}}</p>
-                                                        <p>Tags: {{$file['tags']??'--'}}</p>
-                                                    </div>
-                                                @endif
-                                            </td>
-                                            <td class="size">
-                                                @if($file['shortName'] !== '[Parent] ..')
-                                                    <button class="btn btn-sm btn-success" onclick="window.location.href='/editfield?name=/{{$file['fullName']}}'">Edit</button>
-                                                @endif
-                                            </td>
-                                            <td class="date">
-                                                @if($file['shortName'] !== '[Parent] ..')
-                                                    {{$file['modified']??'--'}}
-                                                @endif
-                                            </td>
-                                            <td class="size">
-                                                @if(!isset($file['isDir']))
-                                                    {{$file['size']??'--'}}
-                                                @endif
-                                            </td>
-                                            <td class="size">
-                                                @if(!isset($file['isDir']))
-                                                    <a href="#" data-toggle="tooltip" data-placement="top"
-                                                       title="" data-original-title="Download">
-                                                        <i class="fa fa-download"></i></a>
-                                                @endif
-                                            </td>
-                                            <td class="size">
-                                                @if($file['shortName'] !== '[Parent] ..')
-                                                    <a href="#" data-toggle="tooltip" data-placement="top"
-                                                       title="" data-original-title="Delete">
-                                                        <i class="fa fa-trash"></i></a>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                {{$view['shortName']}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                {{$view['type']??''}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                {{$view['fullName']??''}}
+                                            </div>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
+                                <div>
+                                    <form action="#" method="get" id="changecategory" name="changecategory">
+                                        <fieldset>
+                                            <label for="changemodel">Change category:</label>
+                                            <select onchange="document.changelang.submit()" name="page"
+                                                    id="changelang-langs">
+                                                <option value="en/function.mime-content-type.php" selected="selected">
+                                                    English
+                                                </option>
+                                                <option value="pt_BR/function.mime-content-type.php">Brazilian
+                                                    Portuguese
+                                                </option>
+                                                <option value="zh/function.mime-content-type.php">Chinese (Simplified)
+                                                </option>
+                                                <option value="fr/function.mime-content-type.php">French</option>
+                                                <option value="de/function.mime-content-type.php">German</option>
+                                                <option value="ja/function.mime-content-type.php">Japanese</option>
+                                                <option value="ro/function.mime-content-type.php">Romanian</option>
+                                                <option value="ru/function.mime-content-type.php">Russian</option>
+                                                <option value="es/function.mime-content-type.php">Spanish</option>
+                                                <option value="tr/function.mime-content-type.php">Turkish</option>
+                                                <option value="help-translate.php">Other</option>
+                                            </select>
+                                        </fieldset>
+                                    </form>
+                                </div>
                             </div>
+                            <form action="/save" method="post">
+                                @csrf
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="name truncate">Name metadata</th>
+                                        <th class="size">Value metadata (editable)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                Title:
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                <input type="text" name="title" value="{{$view['title']??''}}">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                Description:
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                <input type="text" name="description"
+                                                       value="{{$view['description']??''}}">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                Comment:
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form module-footer form-control-plaintext">
+                                                <input type="text" name="comment" value="{{$view['comment']??''}}">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <input type="hidden" name="guid" value="{{json_encode($view)}}">
+                                <input type="submit" class="btn btn-sm btn-success" value="Save">
+                                <a class="btn btn-sm btn-danger" href="{{ url()->previous() }}">Cancel</a>
+                            </form>
                         </div>
                     </div>
                 </div>

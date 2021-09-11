@@ -53,6 +53,14 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'webdav' => [
+            'driver'     => 'webdav',
+            'baseUri'    => 'http://lara.skillup.local:8888',
+            'userName'   => 'proton',
+            'password'   => 'super',
+            'pathPrefix' => 'storage/app', // optional
+        ],
+
     ],
 
     /*
