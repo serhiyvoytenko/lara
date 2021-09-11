@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\File;
 use DB;
 use Illuminate\Support\Facades\Storage;
@@ -9,15 +10,15 @@ use Illuminate\Http\Request;
 
 class FileSystemController extends Controller
 {
-    public function listDirectory()
+    public function listDirectory(Request $request)
     {
-        $view['url'] = $_GET['dir'] ?? '/';
+        $view['url'] = $request->dir ?? '/';
         $filesName = [];
 
         if (isset($_GET['dir']) &&
             !empty($_GET['dir']) &&
             $_GET['dir'] !== '//') {
-            $url = explode('/', trim($_GET['dir'], '/'));
+            $url = explode('/', trim($request->dir, '/'));
             array_pop($url);
             if (empty($url)) {
                 $url = '/';
@@ -33,7 +34,7 @@ class FileSystemController extends Controller
 
         }
 
-        $arrayDirName = Storage::directories($_GET['dir'] ?? '/');
+        $arrayDirName = Storage::directories($request->dir ?? '/');
         foreach ($arrayDirName as $dirName) {
             $view = explode('/', $dirName);
             $path = Storage::path($dirName);
@@ -43,7 +44,6 @@ class FileSystemController extends Controller
             $description = $xAttribute['description'] ?? false;
             $comments = $xAttribute['comments'] ?? false;
             $category = $xAttribute['category'] ?? false;
-
             $shortName = array_pop($view);
             $filesName [$shortName] = [
                 'isDir' => true,
@@ -57,7 +57,7 @@ class FileSystemController extends Controller
             ];
         }
 
-        $arrayFilesName = Storage::files($_GET['dir'] ?? '/');
+        $arrayFilesName = Storage::files($request->dir ?? '/');
         foreach ($arrayFilesName as $fileName) {
             $view = explode('/', $fileName);
             $path = Storage::path($fileName);
@@ -85,15 +85,15 @@ class FileSystemController extends Controller
         ]);
     }
 
-    public function editField(): mixed
+    public function editField(Request $request): mixed
     {
-        if (empty($_GET['name'])) {
+        if (!$request->name || $request->name === '/') {
             return redirect('dashboard');
         }
-        $arrayPath = explode('/', $_GET['name']);
-        $path = Storage::path(trim($_GET['name'], '/'));
+        $arrayPath = explode('/', $request->name);
+        $path = Storage::path(trim($request->name, '/'));
         $guid = xattr_get($path, 'laravel');
-        if(!$guid){
+        if (!$guid) {
             $guid = Str::orderedUuid()->toString();
             xattr_set($path, 'laravel', $guid);
         }
@@ -112,7 +112,7 @@ class FileSystemController extends Controller
             'description' => $description,
             'category' => $category,
             'comment' => $comments,
-            'fullName' => $_GET['name'],
+            'fullName' => $request->name,
             'guid' => $guid,
         ];
 
@@ -121,28 +121,73 @@ class FileSystemController extends Controller
         ]);
     }
 
-    public function save(Request $request){
+    public function save(Request $request)
+    {
 
-        $oldData = (array)json_decode($_POST['guid']);
-        $oldData['title'] = $_POST['title'];
-        $oldData['description'] = $_POST['description'];
-        $oldData['comment'] = $_POST['comment'];
+        $oldData = (array)json_decode($request->guid);
+        $oldData['title'] = $request->title;
+        $oldData['description'] = $request->description;
+        $oldData['comment'] = $request->comment;
 
         $file = File::get()->where('guid', $oldData['guid'])->first();
         if (!isset($file)) {
             $file = new File();
         }
-            $file->title = $_POST['title'];
-            $file->guid = $oldData['guid'];
-            $file->path = $oldData['fullName'];
-            $file->description = $_POST['description'];
-            $file->category = 1;
-            $file->comments = $_POST['comment'];
-            $file->shortname = $oldData['shortName'];
-            $file->fullname = $oldData['fullName'];
-            $file->save();
-            $url = $oldData['fullName'].'/..';
+        $file->title = $_POST['title'];
+        $file->guid = $oldData['guid'];
+        $file->path = $oldData['fullName'];
+        $file->description = $_POST['description'];
+        $file->category = 1;
+        $file->comments = $_POST['comment'];
+        $file->shortname = $oldData['shortName'];
+        $file->fullname = $oldData['fullName'];
+        $file->save();
+        $url = dirname($oldData['fullName']);
 
         return redirect("dashboard?dir={$url}");
+    }
+
+    public function download(Request $request)
+    {
+        return Storage::download($request->file);
+    }
+
+    public function delete(Request $request)
+    {
+        $path = Storage::path(trim($request->file, '/'));
+        if (Storage::exists($request->file) && !is_dir($path)) {
+            $guid = xattr_get($path, 'laravel');
+            if ($guid) {
+                DB::table('files')->where('guid', $guid)->delete();
+            }
+            Storage::delete($request->file);
+        } elseif (is_dir($path)) {
+            $allDirs = Storage::allDirectories($request->file);
+            $allFiles = Storage::allFiles($request->file);
+            $pathShort = Storage::path('');
+            foreach ($allDirs as $dir) {
+                $guid = xattr_get($pathShort . $dir, 'laravel');
+                if ($guid) {
+                    DB::table('files')->where('guid', $guid)->delete();
+                }
+            }
+            foreach ($allFiles as $file) {
+                $guid = xattr_get($pathShort . $file, 'laravel');
+                if ($guid) {
+                    DB::table('files')->where('guid', $guid)->delete();
+                }
+            }
+            Storage::deleteDirectory($request->file);
+        }
+
+        $url = dirname($request->file);
+        return redirect("dashboard?dir={$url}");
+    }
+
+    public function upload(Request $request)
+    {
+
+//        var_dump($request->dir);
+        return view("upload");
     }
 }

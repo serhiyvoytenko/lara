@@ -1,5 +1,5 @@
 <x-app-layout>
-<!--    --><?php //var_dump($view)?>
+    <!--    --><?php //var_dump($view)?>
     <div class="container">
         <div class="view-account">
             <section class="module">
@@ -86,106 +86,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                <input type="text" name="name" value="{{$view['shortName']}}">
-                                                <input type="submit" class="btn btn-sm btn-success" value="Save rename">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                {{$view['type']??''}}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                {{$view['fullName']??''}}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <form action="#" method="get" id="changecategory" name="changecategory">
-                                        <fieldset>
-                                            <label for="changemodel">Change category:</label>
-                                            <select onchange="document.changelang.submit()" name="page"
-                                                    id="changelang-langs">
-                                                <option value="en/function.mime-content-type.php" selected="selected">
-                                                    English
-                                                </option>
-                                                <option value="pt_BR/function.mime-content-type.php">Brazilian
-                                                    Portuguese
-                                                </option>
-                                                <option value="zh/function.mime-content-type.php">Chinese (Simplified)
-                                                </option>
-                                                <option value="fr/function.mime-content-type.php">French</option>
-                                                <option value="de/function.mime-content-type.php">German</option>
-                                                <option value="ja/function.mime-content-type.php">Japanese</option>
-                                                <option value="ro/function.mime-content-type.php">Romanian</option>
-                                                <option value="ru/function.mime-content-type.php">Russian</option>
-                                                <option value="es/function.mime-content-type.php">Spanish</option>
-                                                <option value="tr/function.mime-content-type.php">Turkish</option>
-                                                <option value="help-translate.php">Other</option>
-                                            </select>
-                                        </fieldset>
+                                    <form method="post" enctype="multipart/form-data" name="files">
+                                        @csrf
+                                        <input type="file" name="file" multiple>
+                                        <input type="submit" class="btn btn-sm btn-success">
                                     </form>
-                                </div>
-                            </div>
-                            <form action="/save" method="post">
-                                @csrf
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th class="name truncate">Name metadata</th>
-                                        <th class="size">Value metadata (editable)</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                Title:
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                <input type="text" name="title" value="{{$view['title']??''}}">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                Description:
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                <input type="text" name="description"
-                                                       value="{{$view['description']??''}}">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                Comment:
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form module-footer form-control-plaintext">
-                                                <input type="text" name="comment" value="{{$view['comment']??''}}">
-                                            </div>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
-                                <input type="hidden" name="guid" value="{{json_encode($view)}}">
-                                <input type="submit" class="btn btn-sm btn-success" value="Save">
-                                <a class="btn btn-sm btn-danger" href="/dashboard?dir={{ dirname($view['fullName']) }}">Cancel</a>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

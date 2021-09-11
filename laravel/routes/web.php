@@ -21,13 +21,12 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/dashboard', [FileSystemController::class, 'listDirectory'])->name('dashboard');
-
     Route::get('/editfield', [FileSystemController::class, 'editField'])->name('editfield');
+    Route::get('/download', [FileSystemController::class, 'download'])->name('download');
+    Route::get('/delete', [FileSystemController::class, 'delete'])->name('delete');
     Route::post('/save', [FileSystemController::class, 'save'])->name('save');
+    Route::any('/upload', [FileSystemController::class, 'upload'])->name('upload');
 
 });
-
-
-//Route::middleware(['auth'])->get('/test', [\App\Http\Controllers\FileSystemController::class, 'listDirectory']);
 
 require __DIR__ . '/auth.php';
