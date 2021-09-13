@@ -145,15 +145,15 @@
                                             </td>
                                             <td class="size">
                                                 @if(!isset($file['isDir']))
-                                                    <a href="#" data-toggle="tooltip" data-placement="top"
-                                                       title="" data-original-title="Download">
+                                                    <a href="/download?file=/{{$file['fullName']}}" data-toggle="tooltip" data-placement="top"
+                                                       title="" data-original-title="Download {{$file['shortName']}}">
                                                         <i class="fa fa-download"></i></a>
                                                 @endif
                                             </td>
                                             <td class="size">
                                                 @if($file['shortName'] !== '[Parent] ..')
-                                                    <a href="#" data-toggle="tooltip" data-placement="top"
-                                                       title="" data-original-title="Delete">
+                                                    <a href="/delete?file=/{{$file['fullName']}}" data-toggle="tooltip" data-placement="top"
+                                                       title="" data-original-title="Delete {{$file['shortName']}}">
                                                         <i class="fa fa-trash"></i></a>
                                                 @endif
                                             </td>
