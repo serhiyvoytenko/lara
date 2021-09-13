@@ -21,8 +21,5 @@
         </style>
     </head>
     <body class="antialiased">
-
-    <?php var_dump('hi') ?>
-
     </body>
 </html>
