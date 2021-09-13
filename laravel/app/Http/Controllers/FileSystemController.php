@@ -186,8 +186,28 @@ class FileSystemController extends Controller
 
     public function upload(Request $request)
     {
+        $this->validate($request, [
+            'files' => 'required',
+            'files.*' => 'mimes:doc,pdf,docx,zip,png,jpeg,xls'
+        ]);
 
-//        var_dump($request->dir);
-        return view("upload");
+        if ($request->hasfile('files')) {
+            foreach ($request->file('files') as $file) {
+                $name = $file->getClientOriginalName();
+//                Storage::putFileAs($request->dir, $name, $name);
+                $file->move(Storage::path('') . $request->dir, $name);
+            }
+        }
+        $url = $request->dir;
+        return redirect("dashboard?dir={$url}");
+    }
+
+    public function create(Request $request)
+    {
+//        var_dump($request);exit();
+        Storage::makeDirectory($request->dir.$request->directory_name);
+
+        $url = $request->dir;
+        return redirect("dashboard?dir={$url}");
     }
 }

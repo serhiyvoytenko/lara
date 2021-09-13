@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/delete', [FileSystemController::class, 'delete'])->name('delete');
     Route::post('/save', [FileSystemController::class, 'save'])->name('save');
     Route::any('/upload', [FileSystemController::class, 'upload'])->name('upload');
+    Route::any('/create', [FileSystemController::class, 'create'])->name('create');
 
 });
 

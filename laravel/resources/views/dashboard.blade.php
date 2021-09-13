@@ -32,8 +32,13 @@
                         <div class="content-header-wrapper">
                             <h2 class="title">My Drive</h2>
                             <div class="actions">
-                                <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Upload/Create New Item
-                                </button>
+                                <form method="post" enctype="multipart/form-data" name="files"
+                                      action="/upload?dir={{$_GET['dir']??'/'}}">
+                                    @csrf
+                                    <input type="file" name="files[]" multiple
+                                           class="form form-control form-control-sm">
+                                    <input type="submit" class="btn btn-sm btn-success" value="Upload files">
+                                </form>
                             </div>
                         </div>
                         <div class="content-utilities">
@@ -74,6 +79,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="content">
+                            <div class="">
+                                <form method="post" name="directory" action="/create?dir={{$_GET['dir']??'/'}}">
+                                    @csrf
+                                    <input type="text" name="directory_name" multiple
+                                           class="form form-control-sm"><br>
+                                    <input type="submit" class="btn btn-sm btn-success" value="Create directory">
+                                </form>
+                            </div>
+                        </div>
                         <div class="drive-wrapper drive-list-view">
                             <div class="table-responsive drive-items-table-wrapper">
                                 <table class="table">
@@ -112,7 +127,10 @@
                                             </td>
                                             <td class="size">
                                                 @if($file['shortName'] !== '[Parent] ..')
-                                                    <button class="btn btn-sm btn-success" onclick="window.location.href='/editfield?name=/{{$file['fullName']}}'">Edit</button>
+                                                    <button class="btn btn-sm btn-success"
+                                                            onclick="window.location.href='/editfield?name=/{{$file['fullName']}}'">
+                                                        Edit
+                                                    </button>
                                                 @endif
                                             </td>
                                             <td class="date">
