@@ -32,13 +32,7 @@
                         <div class="content-header-wrapper">
                             <h2 class="title">My Drive</h2>
                             <div class="actions">
-                                <form method="post" enctype="multipart/form-data" name="files"
-                                      action="/upload?dir={{$_GET['dir']??'/'}}">
-                                    @csrf
-                                    <input type="file" name="files[]" multiple
-                                           class="form form-control form-control-sm">
-                                    <input type="submit" class="btn btn-sm btn-success" value="Upload files">
-                                </form>
+
                             </div>
                         </div>
                         <div class="content-utilities">
@@ -79,14 +73,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="content">
-                            <div class="">
-                                <form method="post" name="directory" action="/create?dir={{$_GET['dir']??'/'}}">
-                                    @csrf
-                                    <input type="text" name="directory_name" multiple
-                                           class="form form-control-sm"><br>
-                                    <input type="submit" class="btn btn-sm btn-success" value="Create directory">
-                                </form>
+                        <div class="drive-item-title drive-list-view">
+                            <div class="table-responsive drive-item">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <form method="post" name="directory" action="/create?dir={{$_GET['dir']??'/'}}">
+                                            @csrf
+                                            <td>
+                                                <input type="text" name="directory_name" multiple
+                                                       class="form form-control-sm">
+                                            </td>
+                                            <td>
+                                                <input type="submit" class="btn btn-sm btn-success"
+                                                       value="Create directory">
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    <tr>
+                                        <form method="post" enctype="multipart/form-data" name="files"
+                                              action="/upload?dir={{$_GET['dir']??'/'}}">
+                                            @csrf
+                                            <td>
+                                                <input type="file" name="files[]" multiple
+                                                       class="">
+                                            </td>
+                                            <td>
+                                                <input type="submit" class="btn btn-sm btn-success"
+                                                       value="Upload files">
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    <tr><TD></TD><td></td></tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="drive-wrapper drive-list-view">
@@ -145,14 +165,16 @@
                                             </td>
                                             <td class="size">
                                                 @if(!isset($file['isDir']))
-                                                    <a href="/download?file=/{{$file['fullName']}}" data-toggle="tooltip" data-placement="top"
+                                                    <a href="/download?file=/{{$file['fullName']}}"
+                                                       data-toggle="tooltip" data-placement="top"
                                                        title="" data-original-title="Download {{$file['shortName']}}">
                                                         <i class="fa fa-download"></i></a>
                                                 @endif
                                             </td>
                                             <td class="size">
                                                 @if($file['shortName'] !== '[Parent] ..')
-                                                    <a href="/delete?file=/{{$file['fullName']}}" data-toggle="tooltip" data-placement="top"
+                                                    <a href="/delete?file=/{{$file['fullName']}}" data-toggle="tooltip"
+                                                       data-placement="top"
                                                        title="" data-original-title="Delete {{$file['shortName']}}">
                                                         <i class="fa fa-trash"></i></a>
                                                 @endif
