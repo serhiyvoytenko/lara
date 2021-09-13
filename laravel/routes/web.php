@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/dashboard', [FileSystemController::class, 'listDirectory'])->name('dashboard');
+    Route::view('/test', 'test');
     Route::get('/editfield', [FileSystemController::class, 'editField'])->name('editfield');
     Route::get('/download', [FileSystemController::class, 'download'])->name('download');
     Route::get('/delete', [FileSystemController::class, 'delete'])->name('delete');
