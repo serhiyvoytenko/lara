@@ -1,5 +1,5 @@
 <x-app-layout>
-<!--    --><?php //var_dump($view)?>
+    <!--    --><?php //var_dump($view)?>
     <div class="container">
         <div class="view-account">
             <section class="module">
@@ -60,18 +60,18 @@
                                 </div>
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-default" data-toggle="tooltip"
-                                            data-placement="bottom" title="" data-original-title="Refresh"><i
-                                            class="fa fa-refresh"></i></button>
+                                            data-placement="bottom" title="" data-original-title="Refresh">
+                                        <i class="fa fa-refresh"></i></button>
                                     <button type="button" class="btn btn-default" data-toggle="tooltip"
-                                            data-placement="bottom" title="" data-original-title="Archive"><i
-                                            class="fa fa-archive"></i></button>
+                                            data-placement="bottom" title="" data-original-title="Archive">
+                                        <i class="fa fa-archive"></i></button>
 
                                     <button type="button" class="btn btn-default" data-toggle="tooltip"
-                                            data-placement="bottom" title="" data-original-title="Report spam"><i
-                                            class="fa fa-exclamation-triangle"></i></button>
+                                            data-placement="bottom" title="" data-original-title="Report spam">
+                                        <i class="fa fa-exclamation-triangle"></i></button>
                                     <button type="button" class="btn btn-default" data-toggle="tooltip"
-                                            data-placement="bottom" title="" data-original-title="Delete"><i
-                                            class="fa fa-trash-o"></i></button>
+                                            data-placement="bottom" title="" data-original-title="Delete">
+                                        <i class="fa fa-trash-o"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -107,27 +107,21 @@
                                     </tbody>
                                 </table>
                                 <div>
-                                    <form action="#" method="get" id="changecategory" name="changecategory">
+                                    <form action="/getmodels?dir={{$view['fullName']}}" method="post" id="change-model" name="changemodel">
+                                        @csrf
                                         <fieldset>
-                                            <label for="changemodel">Change category:</label>
-                                            <select onchange="document.changelang.submit()" name="page"
-                                                    id="changelang-langs">
-                                                <option value="en/function.mime-content-type.php" selected="selected">
-                                                    English
-                                                </option>
-                                                <option value="pt_BR/function.mime-content-type.php">Brazilian
-                                                    Portuguese
-                                                </option>
-                                                <option value="zh/function.mime-content-type.php">Chinese (Simplified)
-                                                </option>
-                                                <option value="fr/function.mime-content-type.php">French</option>
-                                                <option value="de/function.mime-content-type.php">German</option>
-                                                <option value="ja/function.mime-content-type.php">Japanese</option>
-                                                <option value="ro/function.mime-content-type.php">Romanian</option>
-                                                <option value="ru/function.mime-content-type.php">Russian</option>
-                                                <option value="es/function.mime-content-type.php">Spanish</option>
-                                                <option value="tr/function.mime-content-type.php">Turkish</option>
-                                                <option value="help-translate.php">Other</option>
+                                            <label for="change-model">Select model:</label>
+                                            <select onchange="document.changemodel.submit()" name="page"
+                                                    id="change-model">
+                                                <option value="#" selected="selected">Default</option>
+                                                <option value="messages">Messages</option>
+                                                <option value="">Schemas</option>
+                                                <option value="">Reports</option>
+                                                <option value="">Acts</option>
+                                                <option value="">Сertificates</option>
+                                                <option value="">Estimates</option>
+                                                <option value="">Contracts</option>
+                                                <option value="">Requests</option>
                                             </select>
                                         </fieldset>
                                     </form>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FileSystemController;
+use App\Http\Controllers\GetModelsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/editfield', [FileSystemController::class, 'editField'])->name('editfield');
     Route::get('/download', [FileSystemController::class, 'download'])->name('download');
     Route::get('/delete', [FileSystemController::class, 'delete'])->name('delete');
+    Route::any('/getmodels', [GetModelsController::class, 'getmodels'])->name('getmodels');
     Route::post('/save', [FileSystemController::class, 'save'])->name('save');
     Route::any('/upload', [FileSystemController::class, 'upload'])->name('upload');
     Route::any('/create', [FileSystemController::class, 'create'])->name('create');
