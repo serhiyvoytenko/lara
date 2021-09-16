@@ -90,6 +90,7 @@ class FileSystemController extends Controller
         if (!$request->name || $request->name === '/') {
             return redirect('dashboard');
         }
+//        var_dump($request->all());exit();
         $arrayPath = explode('/', $request->name);
         $path = Storage::path(trim($request->name, '/'));
         $guid = xattr_get($path, 'laravel');

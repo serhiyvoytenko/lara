@@ -113,15 +113,15 @@
                                             <label for="change-model">Select model:</label>
                                             <select onchange="document.changemodel.submit()" name="page"
                                                     id="change-model">
-                                                <option value="#" selected="selected">Default</option>
+                                                <option value="#" selected>Default</option>
                                                 <option value="messages">Messages</option>
-                                                <option value="">Schemas</option>
-                                                <option value="">Reports</option>
-                                                <option value="">Acts</option>
-                                                <option value="">Сertificates</option>
-                                                <option value="">Estimates</option>
-                                                <option value="">Contracts</option>
-                                                <option value="">Requests</option>
+                                                <option value="schemas">Schemas</option>
+                                                <option value="reports">Reports</option>
+                                                <option value="acts">Acts</option>
+                                                <option value="certificates">Сertificates</option>
+                                                <option value="estimates">Estimates</option>
+                                                <option value="contracts">Contracts</option>
+                                                <option value="requests">Requests</option>
                                             </select>
                                         </fieldset>
                                     </form>
