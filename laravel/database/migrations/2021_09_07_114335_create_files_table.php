@@ -25,7 +25,7 @@ class CreateFilesTable extends Migration
             $table->string('fullname')->unique();
             $table->timestamps();
 
-            $table->foreign('category')->references('name')->on('categories');
+//            $table->foreign('category')->references('name')->on('categories');
         });
     }
 
