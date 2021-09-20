@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateContractsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('parent');
-            $table->string('inheritance');
             $table->timestamps();
+            $table->string('number');
+            $table->string('contractor');
+            $table->string('date_expire');
+            $table->string('sum');
+            $table->string('description');
+
         });
     }
 
@@ -29,6 +32,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('contracts');
     }
 }
