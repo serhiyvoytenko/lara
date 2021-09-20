@@ -89,7 +89,7 @@
                                     <tr>
                                         <td>
                                             <div class="form module-footer form-control-plaintext">
-                                                <input type="text" name="name" value="{{$view['shortName']}}">
+                                                <input type="text" name="name" value="{{$view['shortName']??''}}">
                                                 <input type="submit" class="btn btn-sm btn-success" value="Save rename">
                                             </div>
                                         </td>
@@ -107,7 +107,7 @@
                                     </tbody>
                                 </table>
                                 <div>
-                                    <form action="/getmodels?dir={{$view['fullName']}}" method="post" id="change-model" name="changemodel">
+                                    <form action="/getmodels?dir={{$view['fullName']??''}}" method="post" id="change-model" name="changemodel">
                                         @csrf
                                         <fieldset>
                                             <label for="change-model">Select model:</label>
@@ -178,7 +178,7 @@
                                 </table>
                                 <input type="hidden" name="guid" value="{{json_encode($view)}}">
                                 <input type="submit" class="btn btn-sm btn-success" value="Save">
-                                <a class="btn btn-sm btn-danger" href="/dashboard?dir={{ dirname($view['fullName']) }}">Cancel</a>
+                                <a class="btn btn-sm btn-danger" href="/dashboard?dir={{ dirname($view['fullName']??'') }}">Cancel</a>
                             </form>
                         </div>
                     </div>

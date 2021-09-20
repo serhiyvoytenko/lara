@@ -105,6 +105,13 @@ class FileSystemController extends Controller
         $description = $xAttribute['description'] ?? false;
         $comments = $xAttribute['comments'] ?? false;
         $category = $xAttribute['category'] ?? false;
+        $modelled = $xAttribute['modelled_type'] ?? false;
+        $file_model = File::find($xAttribute['id']??'');
+        $modelled_key = array_fill_keys($file_model?->modelled()->getRelated()->getFillable()??[], null);
+//        var_dump($file_model);exit();
+        $field_model = $file_model?->modelled()->get(array_keys($modelled_key))->toArray();
+//        $field_model = $file_model?->modelled()->get(['from','to'])->toArray();
+//        var_dump($modelled_key);exit();
 
         $field = [
             'shortName' => $shortName,
@@ -115,8 +122,11 @@ class FileSystemController extends Controller
             'comment' => $comments,
             'fullName' => $request->name,
             'guid' => $guid,
+            'modelled' => $modelled,
         ];
 
+        $field = array_merge($field, $field_model[0]??[]);
+//var_dump($field);exit();
         return view('editfield', [
             'view' => $field,
         ]);
@@ -206,7 +216,7 @@ class FileSystemController extends Controller
     public function create(Request $request)
     {
 //        var_dump($request);exit();
-        Storage::makeDirectory($request->dir.$request->directory_name);
+        Storage::makeDirectory($request->dir . $request->directory_name);
 
         $url = $request->dir;
         return redirect("dashboard?dir={$url}");
