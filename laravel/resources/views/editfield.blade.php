@@ -113,15 +113,15 @@
                                             <label for="change-model">Select model:</label>
                                             <select onchange="document.changemodel.submit()" name="page"
                                                     id="change-model">
-                                                <option value="#" selected>Default</option>
-                                                <option value="messages">Messages</option>
-                                                <option value="schemas">Schemas</option>
-                                                <option value="reports">Reports</option>
-                                                <option value="acts">Acts</option>
-                                                <option value="certificates">Сertificates</option>
-                                                <option value="estimates">Estimates</option>
-                                                <option value="contracts">Contracts</option>
-                                                <option value="requests">Requests</option>
+                                                <option value="#" @if ($view['modelled']==='') selected @endif>Default</option>
+                                                <option value="messages" @if ($view['modelled']==='Message') selected @endif>Messages</option>
+                                                <option value="schemas" @if ($view['modelled']==='Schemas') selected @endif>Schemas</option>
+                                                <option value="reports" @if ($view['modelled']==='Reports') selected @endif>Reports</option>
+                                                <option value="acts" @if ($view['modelled']==='Acts') selected @endif>Acts</option>
+                                                <option value="certificates" @if ($view['modelled']==='Certificates') selected @endif>Сertificates</option>
+                                                <option value="estimates" @if ($view['modelled']==='Estimates') selected @endif>Estimates</option>
+                                                <option value="contracts" @if ($view['modelled']==='Contracts') selected @endif>Contracts</option>
+                                                <option value="requests" @if ($view['modelled']==='Requests') selected @endif>Requests</option>
                                             </select>
                                         </fieldset>
                                     </form>
