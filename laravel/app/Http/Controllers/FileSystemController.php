@@ -111,7 +111,7 @@ class FileSystemController extends Controller
         if (!empty($modelled_key)) {
             $field_model = $file_model?->modelled()->getRelated()->get(array_keys($modelled_key))->toArray();
         }
-        $modelledType = $field_model[0] ?? [];
+        $modelledType = $field_model[0] ?? $modelled_key;
 
         $field = [
             'shortName' => $shortName,
@@ -123,10 +123,11 @@ class FileSystemController extends Controller
             'fullName' => $request->name,
             'guid' => $guid,
             'modelled' => $modelled,
+            'model_field' => $modelledType,
         ];
 
-        $field = array_merge($field, $modelledType);
-//        var_dump($xAttribute, $field_model, $file_model, $field, $modelledType);        exit();
+//        $field = array_merge($field, $modelledType);
+//        var_dump($field, $modelled_key);        exit();
         return view('editfield', [
             'view' => $field,
         ]);

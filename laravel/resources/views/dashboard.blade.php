@@ -30,7 +30,7 @@
 
                     <div class="content-panel">
                         <div class="content-header-wrapper">
-                            <h2 class="title">My Drive</h2>
+                            <h2 class="title"><a href="/dashboard" class="btn-link">My Drive</a></h2>
                             <div class="actions">
 
                             </div>

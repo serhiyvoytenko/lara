@@ -31,7 +31,7 @@
 
                     <div class="content-panel">
                         <div class="content-header-wrapper">
-                            <h2 class="title"><a href="/dashboard">My Drive</a></h2>
+                            <h2 class="title"><a href="/dashboard" class="btn-link">My Drive</a></h2>
                             <div class="actions">
                                 <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Upload attached file
                                 </button>
@@ -107,21 +107,40 @@
                                     </tbody>
                                 </table>
                                 <div>
-                                    <form action="/getmodels?dir={{$view['fullName']??''}}" method="post" id="change-model" name="changemodel">
+                                    <form action="/getmodels?dir={{$view['fullName']??''}}" method="post"
+                                          id="change-model" name="changemodel">
                                         @csrf
                                         <fieldset>
                                             <label for="change-model">Select model:</label>
                                             <select onchange="document.changemodel.submit()" name="page"
                                                     id="change-model">
-                                                <option value="#" @if ($view['modelled']==='') selected @endif>Default</option>
-                                                <option value="messages" @if ($view['modelled']==='Message') selected @endif>Messages</option>
-                                                <option value="schemas" @if ($view['modelled']==='Schemas') selected @endif>Schemas</option>
-                                                <option value="reports" @if ($view['modelled']==='Reports') selected @endif>Reports</option>
-                                                <option value="acts" @if ($view['modelled']==='Acts') selected @endif>Acts</option>
-                                                <option value="certificates" @if ($view['modelled']==='Certificates') selected @endif>Сertificates</option>
-                                                <option value="estimates" @if ($view['modelled']==='Estimates') selected @endif>Estimates</option>
-                                                <option value="contracts" @if ($view['modelled']==='Contracts') selected @endif>Contracts</option>
-                                                <option value="requests" @if ($view['modelled']==='Requests') selected @endif>Requests</option>
+                                                <option value="#" @if ($view['modelled']==='') selected @endif>Default
+                                                </option>
+                                                <option value="messages"
+                                                        @if ($view['modelled']==='Message') selected @endif>Messages
+                                                </option>
+                                                <option value="schemas"
+                                                        @if ($view['modelled']==='Schema') selected @endif>Schemas
+                                                </option>
+                                                <option value="reports"
+                                                        @if ($view['modelled']==='Report') selected @endif>Reports
+                                                </option>
+                                                <option value="acts" @if ($view['modelled']==='Act') selected @endif>
+                                                    Acts
+                                                </option>
+                                                <option value="certificates"
+                                                        @if ($view['modelled']==='Certificate') selected @endif>
+                                                    Сertificates
+                                                </option>
+                                                <option value="estimates"
+                                                        @if ($view['modelled']==='Estimate') selected @endif>Estimates
+                                                </option>
+                                                <option value="contracts"
+                                                        @if ($view['modelled']==='Contract') selected @endif>Contracts
+                                                </option>
+                                                <option value="requests"
+                                                        @if ($view['modelled']==='Request') selected @endif>Requests
+                                                </option>
                                             </select>
                                         </fieldset>
                                     </form>
@@ -174,11 +193,26 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @foreach($view['model_field'] as $field=>$value)
+                                        <tr>
+                                            <td>
+                                                <div class="form module-footer form-control-plaintext">
+                                                    {{ucfirst($field)}}:
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form module-footer form-control-plaintext">
+                                                    <input type="text" name="comment" value="{{$value??''}}">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                                 <input type="hidden" name="guid" value="{{json_encode($view)}}">
                                 <input type="submit" class="btn btn-sm btn-success" value="Save">
-                                <a class="btn btn-sm btn-danger" href="/dashboard?dir={{ dirname($view['fullName']??'') }}">Cancel</a>
+                                <a class="btn btn-sm btn-danger"
+                                   href="/dashboard?dir={{ dirname($view['fullName']??'') }}">Cancel</a>
                             </form>
                         </div>
                     </div>
