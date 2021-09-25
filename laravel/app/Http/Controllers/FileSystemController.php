@@ -91,17 +91,15 @@ class FileSystemController extends Controller
             return redirect('dashboard');
         }
 
-        if (session()->get('model') !== null) {
-            var_dump(session()->get('model'), request()->headers->get('referer'));exit();
-        }
-//        var_dump($request);exit();
         $arrayPath = explode('/', $request->name);
         $path = Storage::path(trim($request->name, '/'));
         $guid = xattr_get($path, 'laravel');
+
         if (!$guid) {
             $guid = Str::orderedUuid()->toString();
             xattr_set($path, 'laravel', $guid);
         }
+
         $type = mime_content_type($path);
         $shortName = array_pop($arrayPath);
         $xAttribute = (array)DB::table('files')->where('guid', $guid)->first();
@@ -112,10 +110,17 @@ class FileSystemController extends Controller
         $modelled = substr(strrchr($xAttribute['modelled_type'] ?? '', '\\'), 1) ?? '';
         $file_model = File::find($xAttribute['id'] ?? '');
         $modelled_key = array_fill_keys($file_model?->modelled()->getRelated()->getFillable() ?? [], null);
+
         if (!empty($modelled_key)) {
             $field_model = $file_model?->modelled()->getRelated()->get(array_keys($modelled_key))->toArray();
         }
+
         $modelledType = $field_model[0] ?? $modelled_key;
+
+        if(empty($modelledType)){
+            $modelledType = session()->get('model')?? $modelled_key;
+            $modelled = substr(strrchr(session()->get('modelled'), '\\'), 1);
+        }
 
         $field = [
             'shortName' => $shortName,
@@ -130,8 +135,7 @@ class FileSystemController extends Controller
             'model_field' => $modelledType,
         ];
 
-//        $field = array_merge($field, $modelledType);
-//        var_dump($field, $modelled_key);        exit();
+//        var_dump($field);        exit();
         return view('editfield', [
             'view' => $field,
         ]);
@@ -144,15 +148,18 @@ class FileSystemController extends Controller
     {
 //var_dump($request);exit();
         $oldData = json_decode($request->guid, true, 512, JSON_THROW_ON_ERROR);
-        var_dump($oldData);
+
+//        var_dump($oldData);
+
         $oldData['title'] = $request->title;
         $oldData['description'] = $request->description;
         $oldData['comment'] = $request->comment;
-//var_dump($oldData, $request->all());exit();
         $file = File::get()->where('guid', $oldData['guid'])->first();
+
         if (!isset($file)) {
             $file = new File();
         }
+
         $file->title = $_POST['title'];
         $file->guid = $oldData['guid'];
         $file->path = $oldData['fullName'];

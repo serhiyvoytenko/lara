@@ -32,10 +32,14 @@ class Message extends Model
     use HasFactory;
 
     protected $fillable = [
-      'from', 'to', 'subject', 'number',
+        'from',
+        'to',
+        'subject',
+        'number',
     ];
 
-    public function file(){
+    public function file()
+    {
 
         return $this->morphOne(File::class, 'modelled');
 

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Act;
+use App\Models\Certificate;
 use App\Models\Contract;
+use App\Models\Estimate;
 use App\Models\Message;
+use App\Models\Report;
+use App\Models\Schema;
 use Illuminate\Http\Request;
 
 class GetModelsController extends Controller
@@ -11,49 +16,48 @@ class GetModelsController extends Controller
     public function getmodels(Request $request)
     {
         $url = $request->dir;
-//var_dump($request);exit();
+
         switch ($request->page) {
             case 'messages':
                 $model = new Message();
                 break;
             case 'schemas':
-                $model = 0;
+                $model = new Schema();
                 break;
             case 'reports':
-                $model = 1;
+                $model = new Report();
                 break;
             case 'acts':
-                $model = 2;
+                $model = new Act();
                 break;
             case 'certificates':
-                $model = 3;
+                $model = new Certificate();
                 break;
             case 'estimates':
-                $model = 4;
+                $model = new Estimate();
                 break;
             case 'contracts':
                 $model = new Contract();
                 break;
             case 'requests':
-                $model = 5;
+                $model = new \App\Models\Request();
                 break;
-//            case '#':
-//                $model = '';
-//                break;
             default:
                 $model = null;
 
         }
         if ($model) {
-            $fields['fields'] = $model->getFillable();
-            $fields['modelled'] = $request->page;
+            $fields = array_fill_keys($model->getFillable(), null);
+            $modelled = $model::class;
         } else {
-            $fields = null;
+            $fields = [];
+            $modelled = '';
         }
-//        $fields = json_encode($fields);
-//        var_dump($fields);       exit();
 
-        return redirect("editfield?name={$url}")->with('model', $fields);
+        return redirect("editfield?name={$url}")->with([
+            'model' => $fields,
+            'modelled' => $modelled,
+        ]);
     }
 
 
