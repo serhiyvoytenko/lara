@@ -116,9 +116,12 @@ class FileSystemController extends Controller
         }
 
         $modelledType = $field_model[0] ?? $modelled_key;
+//var_dump(session()->get('model'));exit();
+        if (empty($modelledType) ||
+            (!empty(session()->get('model'))
+                && !empty(array_diff_key(session()->get('model'), $modelled_key)))) {
 
-        if(empty($modelledType)){
-            $modelledType = session()->get('model')?? $modelled_key;
+            $modelledType = session()->get('model');
             $modelled = substr(strrchr(session()->get('modelled'), '\\'), 1);
         }
 
@@ -148,8 +151,6 @@ class FileSystemController extends Controller
     {
 //var_dump($request);exit();
         $oldData = json_decode($request->guid, true, 512, JSON_THROW_ON_ERROR);
-
-//        var_dump($oldData);
 
         $oldData['title'] = $request->title;
         $oldData['description'] = $request->description;
@@ -221,7 +222,6 @@ class FileSystemController extends Controller
         if ($request->hasfile('files')) {
             foreach ($request->file('files') as $file) {
                 $name = $file->getClientOriginalName();
-//                Storage::putFileAs($request->dir, $name, $name);
                 $file->move(Storage::path('') . $request->dir, $name);
             }
         }
