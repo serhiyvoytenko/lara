@@ -90,7 +90,11 @@ class FileSystemController extends Controller
         if (!$request->name || $request->name === '/') {
             return redirect('dashboard');
         }
-//        var_dump($request->all());exit();
+
+        if (session()->get('model') !== null) {
+            var_dump(session()->get('model'), request()->headers->get('referer'));exit();
+        }
+//        var_dump($request);exit();
         $arrayPath = explode('/', $request->name);
         $path = Storage::path(trim($request->name, '/'));
         $guid = xattr_get($path, 'laravel');
@@ -135,7 +139,7 @@ class FileSystemController extends Controller
 
     public function save(Request $request)
     {
-
+//var_dump($request);exit();
         $oldData = (array)json_decode($request->guid);
         $oldData['title'] = $request->title;
         $oldData['description'] = $request->description;

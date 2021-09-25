@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -10,42 +11,49 @@ class GetModelsController extends Controller
     public function getmodels(Request $request)
     {
         $url = $request->dir;
-
+//var_dump($request);exit();
         switch ($request->page) {
             case 'messages':
                 $model = new Message();
                 break;
             case 'schemas':
-                $model = '';
+                $model = 0;
                 break;
             case 'reports':
-                $model = '1';
+                $model = 1;
                 break;
             case 'acts':
-                $model = '2';
+                $model = 2;
                 break;
             case 'certificates':
-                $model = '3';
+                $model = 3;
                 break;
             case 'estimates':
-                $model = '4';
+                $model = 4;
                 break;
             case 'contracts':
-                $model = '5';
+                $model = new Contract();
                 break;
             case 'requests':
-                $model = '6';
+                $model = 5;
                 break;
-        }
+//            case '#':
+//                $model = '';
+//                break;
+            default:
+                $model = null;
 
-    $fields = '';
-        $columns = $model->getFillable();
-        foreach ($columns as $column) {
-            $fields .= '&' . $column;
         }
-//        var_dump($columns,$url, $fields);
+        if ($model) {
+            $fields['fields'] = $model->getFillable();
+            $fields['modelled'] = $request->page;
+        } else {
+            $fields = null;
+        }
+//        $fields = json_encode($fields);
+//        var_dump($fields);       exit();
 
-                return redirect("editfield?name={$url}{$fields}");
+        return redirect("editfield?name={$url}")->with('model', $fields);
     }
 
 

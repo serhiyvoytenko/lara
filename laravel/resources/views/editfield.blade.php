@@ -202,7 +202,7 @@
                                             </td>
                                             <td>
                                                 <div class="form module-footer form-control-plaintext">
-                                                    <input type="text" name="comment" value="{{$value??''}}">
+                                                    <input type="text" name="{{$field}}" value="{{$value??''}}">
                                                 </div>
                                             </td>
                                         </tr>
