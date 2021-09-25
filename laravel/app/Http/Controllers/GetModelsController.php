@@ -10,6 +10,7 @@ class GetModelsController extends Controller
     public function getmodels(Request $request)
     {
         $url = $request->dir;
+
         switch ($request->page) {
             case 'messages':
                 $model = new Message();
