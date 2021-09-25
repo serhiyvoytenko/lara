@@ -137,14 +137,18 @@ class FileSystemController extends Controller
         ]);
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function save(Request $request)
     {
 //var_dump($request);exit();
-        $oldData = (array)json_decode($request->guid);
+        $oldData = json_decode($request->guid, true, 512, JSON_THROW_ON_ERROR);
+        var_dump($oldData);
         $oldData['title'] = $request->title;
         $oldData['description'] = $request->description;
         $oldData['comment'] = $request->comment;
-
+//var_dump($oldData, $request->all());exit();
         $file = File::get()->where('guid', $oldData['guid'])->first();
         if (!isset($file)) {
             $file = new File();
