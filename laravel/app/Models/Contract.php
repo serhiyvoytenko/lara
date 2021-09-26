@@ -14,7 +14,7 @@ class Contract extends Model
         'contractor',
         'date_expire',
         'sum',
-        'description',
+        'addition',
     ];
 
     public function file(){

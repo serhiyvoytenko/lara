@@ -23,7 +23,7 @@ class CreateFilesTable extends Migration
             $table->string('shortname');
             $table->string('path');
             $table->string('fullname')->unique();
-            $table->string('modelled_id')->nullable();
+            $table->bigInteger('modelled_id')->nullable();
             $table->string('modelled_type')->nullable();
             $table->timestamps();
 

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $shortname
  * @property string $path
  * @property string $fullname
+ * @property string $modelled_type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|File newModelQuery()
@@ -40,6 +41,6 @@ class File extends Model
     use HasFactory;
 
     public function modelled(){
-        return $this->morphTo();
+        return $this->morphTo(__FUNCTION__, 'modelled_type', 'modelled_id');
     }
 }

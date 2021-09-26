@@ -16,4 +16,8 @@ class Estimate extends Model
       'contract',
       'balance',
     ];
+
+    public function file(){
+        return $this->morphOne(File::class, 'modelled');
+    }
 }

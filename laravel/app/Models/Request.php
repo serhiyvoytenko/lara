@@ -16,4 +16,8 @@ class Request extends Model
         'contract',
         'date',
     ];
+
+    public function file(){
+        return $this->morphOne(File::class, 'modelled');
+    }
 }

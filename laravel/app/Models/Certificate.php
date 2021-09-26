@@ -14,4 +14,8 @@ class Certificate extends Model
         'expired',
         'name',
     ];
+
+    public function file(){
+        return $this->morphOne(File::class, 'modelled');
+    }
 }

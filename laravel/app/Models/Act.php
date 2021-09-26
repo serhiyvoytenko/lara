@@ -17,4 +17,8 @@ class Act extends Model
         'contract',
         'object',
     ];
+
+    public function file(){
+        return $this->morphOne(File::class, 'modelled');
+    }
 }

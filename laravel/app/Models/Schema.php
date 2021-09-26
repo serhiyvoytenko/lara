@@ -14,4 +14,8 @@ class Schema extends Model
         'object',
         'status',
         ];
+
+    public function file(){
+        return $this->morphOne(File::class, 'modelled');
+    }
 }

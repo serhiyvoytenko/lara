@@ -15,4 +15,8 @@ class Report extends Model
         'object',
         'contract',
     ];
+
+    public function file(){
+        return $this->morphOne(File::class, 'modelled');
+    }
 }

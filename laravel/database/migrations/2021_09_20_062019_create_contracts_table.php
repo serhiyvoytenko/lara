@@ -20,7 +20,7 @@ class CreateContractsTable extends Migration
             $table->string('contractor');
             $table->string('date_expire');
             $table->string('sum');
-            $table->string('description');
+            $table->string('addition');
 
         });
     }

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class FileSystemController extends Controller
 {
+    private const MODELLED_NAME = 'App\\Models\\';
+
     public function listDirectory(Request $request)
     {
         $view['url'] = $request->dir ?? '/';
@@ -112,16 +114,16 @@ class FileSystemController extends Controller
         $modelled_key = array_fill_keys($file_model?->modelled()->getRelated()->getFillable() ?? [], null);
 
         if (!empty($modelled_key)) {
-            $field_model = $file_model?->modelled()->getRelated()->get(array_keys($modelled_key))->toArray();
+            $field_model = $file_model?->modelled()->get(array_keys($modelled_key))->toArray();
         }
 
         $modelledType = $field_model[0] ?? $modelled_key;
-//var_dump(session()->get('model'));exit();
+
         if (empty($modelledType) ||
             (!empty(session()->get('model'))
                 && !empty(array_diff_key(session()->get('model'), $modelled_key)))) {
 
-            $modelledType = session()->get('model');
+            $modelledType = session()->get('model')??[];
             $modelled = substr(strrchr(session()->get('modelled'), '\\'), 1);
         }
 
@@ -149,27 +151,35 @@ class FileSystemController extends Controller
      */
     public function save(Request $request)
     {
-//var_dump($request);exit();
-        $oldData = json_decode($request->guid, true, 512, JSON_THROW_ON_ERROR);
+        $oldData = json_decode($request->get('guid'), true, 512, JSON_THROW_ON_ERROR);
 
-        $oldData['title'] = $request->title;
-        $oldData['description'] = $request->description;
-        $oldData['comment'] = $request->comment;
         $file = File::get()->where('guid', $oldData['guid'])->first();
 
         if (!isset($file)) {
             $file = new File();
         }
 
-        $file->title = $_POST['title'];
+        $file->title = $request->get('title');
         $file->guid = $oldData['guid'];
         $file->path = $oldData['fullName'];
-        $file->description = $_POST['description'];
+        $file->description = $request->get('description');
         $file->category = 1;
-        $file->comments = $_POST['comment'];
+        $file->comments = $request->get('comment');
         $file->shortname = $oldData['shortName'];
         $file->fullname = $oldData['fullName'];
+
+        $name_model = self::MODELLED_NAME.$oldData['modelled'];
+        $modelled = new $name_model;
+        $model_field = $oldData['model_field'];
+
+        foreach ($model_field as $key => $field){
+            $modelled->$key = $request->get($key);
+        }
+
+        $modelled->save();
+        $file->modelled()->associate($modelled);
         $file->save();
+
         $url = dirname($oldData['fullName']);
 
         return redirect("dashboard?dir={$url}");
