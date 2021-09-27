@@ -123,7 +123,7 @@ class FileSystemController extends Controller
             (!empty(session()->get('model'))
                 && !empty(array_diff_key(session()->get('model'), $modelled_key)))) {
 
-            $modelledType = session()->get('model')??[];
+            $modelledType = session()->get('model') ?? [];
             $modelled = substr(strrchr(session()->get('modelled'), '\\'), 1);
         }
 
@@ -140,7 +140,6 @@ class FileSystemController extends Controller
             'model_field' => $modelledType,
         ];
 
-//        var_dump($field);        exit();
         return view('editfield', [
             'view' => $field,
         ]);
@@ -168,18 +167,28 @@ class FileSystemController extends Controller
         $file->shortname = $oldData['shortName'];
         $file->fullname = $oldData['fullName'];
 
-        $name_model = self::MODELLED_NAME.$oldData['modelled'];
-        $modelled = new $name_model;
+        $name_model = self::MODELLED_NAME . $oldData['modelled'];
+
+        $modelled_id = $file->getAttribute('modelled_id');
+
+        if (isset($modelled_id) && $name_model === $file->getAttribute('modelled_type')) {
+            $modelled = $file->modelled()->get()->first();
+        } elseif (isset($modelled_id) && $name_model !== $file->getAttribute('modelled_type')) {
+            $file->modelled()->delete();
+            $modelled = new $name_model;
+        } else {
+            $modelled = new $name_model;
+        }
+
         $model_field = $oldData['model_field'];
 
-        foreach ($model_field as $key => $field){
+        foreach ($model_field as $key => $field) {
             $modelled->$key = $request->get($key);
         }
 
         $modelled->save();
         $file->modelled()->associate($modelled);
         $file->save();
-
         $url = dirname($oldData['fullName']);
 
         return redirect("dashboard?dir={$url}");
@@ -193,24 +202,29 @@ class FileSystemController extends Controller
     public function delete(Request $request)
     {
         $path = Storage::path(trim($request->file, '/'));
+
         if (Storage::exists($request->file) && !is_dir($path)) {
             $guid = xattr_get($path, 'laravel');
+
             if ($guid) {
                 DB::table('files')->where('guid', $guid)->delete();
             }
             Storage::delete($request->file);
+
         } elseif (is_dir($path)) {
             $allDirs = Storage::allDirectories($request->file);
             $allFiles = Storage::allFiles($request->file);
             $pathShort = Storage::path('');
             foreach ($allDirs as $dir) {
                 $guid = xattr_get($pathShort . $dir, 'laravel');
+
                 if ($guid) {
                     DB::table('files')->where('guid', $guid)->delete();
                 }
             }
             foreach ($allFiles as $file) {
                 $guid = xattr_get($pathShort . $file, 'laravel');
+
                 if ($guid) {
                     DB::table('files')->where('guid', $guid)->delete();
                 }
@@ -219,6 +233,7 @@ class FileSystemController extends Controller
         }
 
         $url = dirname($request->file);
+
         return redirect("dashboard?dir={$url}");
     }
 
